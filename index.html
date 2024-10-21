@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <img src="media/logo.png" alt="logo" class="logo">
+            <ul>
+                <li><a href="#">Market</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">White papers</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <a href="#" class="btn">EXPLORE MORE</a>
+        </nav>
+
+        <div class="content">
+            <h1>BUY AND <br> SELL <span>Crypto</span></h1>
+            <p>World's biggest cryptocurrency exchange available on web <br>as well as mobile phone.</p>
+            <a href="#" class="btn">Explore more</a>
+        </div>
+        <div class="coin-list">
+            <div class="coin">
+                <img src="media/bitcoin.png" alt="bitcoin logo">
+                <div>
+                    <h3 id="one">$00</h3>
+                    <p>Bitcoin</p>
+                </div>
+            </div>
+            <div class="coin">
+                <img src="media/ethereum.png" alt="ethereum logo">
+                <div>
+                    <h3 id="two">$00</h3>
+                    <p>Ethereum</p>
+                </div>
+            </div>
+            <div class="coin">
+                <img src="media/dogecoin.png" alt="dogecoin logo">
+                <div>
+                    <h3 id="three">$00</h3>
+                    <p>Dogecoin</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        async function getCryptoData() {
+            try {
+                const response = await axios.get('http://localhost:3000/crypto-data');
+                const data = response.data.data;
+
+                // Update the DOM with cryptocurrency prices
+                document.getElementById('one').textContent = `$${data[0].quote.USD.price.toFixed(2)}`;  // Bitcoin
+                document.getElementById('two').textContent = `$${data[1].quote.USD.price.toFixed(2)}`;  // Ethereum
+                document.getElementById('three').textContent = `$${data[2].quote.USD.price.toFixed(2)}`;  // Dogecoin
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the function when the page loads
+        getCryptoData();
+    </script>
+</body>
+</html>
