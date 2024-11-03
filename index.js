@@ -3,7 +3,8 @@ import axios from 'axios';
 import cors from 'cors';  // Import the cors package
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+;
 
 const API_KEY = '601a380c-7cda-4085-825d-03f8de0435c8'; // Your CoinMarketCap API key
 
