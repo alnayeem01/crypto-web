@@ -31,6 +31,18 @@ app.get('/crypto-data', async (req, res) => {
   }
 });
 
+
+// to host on render
+const baseURL = process.env.NODE_ENV === 'production' 
+  ? 'https://crypto-web-sg8w.onrender.com'
+  : 'http://localhost:3000';
+
+fetch(`${baseURL}/crypto-data`)
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error fetching data:', error));
+
+
 app.listen(port, () => {
   console.log(`Server running on ${port}`);
 });
